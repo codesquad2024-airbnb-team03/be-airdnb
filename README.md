@@ -15,5 +15,6 @@
 | 9    |         |                |
 | 10   |         |                |
 | 11   |         |                |
+| 12   |샤피, 실브|[12팀 레포](https://github.com/codesquad-masters2024-airdnb-team12/be-airdnb)|
 
 - 팀 정보를 업데이트해서 main 브랜치로 PR 보내 주세요.
