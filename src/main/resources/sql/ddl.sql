@@ -13,7 +13,7 @@ create table ACCOMMODATIONS
     name        varchar(255),
     profile_img varchar(255),
     price       bigint,
-    grade       int,
+    grade       double,
     headcount   int,
     user_id    bigint,
     review_id  bigint,
@@ -26,7 +26,7 @@ create table REVIEWS
 (
     id                bigint auto_increment primary key,
     content           varchar(255),
-    grade             int,
+    grade             double,
     user_id          bigint,
     accommodation_id bigint,
     foreign key (REVIEWS.user_id) references USERS (USERS.id) ON DELETE CASCADE,
