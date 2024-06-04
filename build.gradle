@@ -30,7 +30,11 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 }
-//
+
 //tasks.named('test') {
 //	useJUnitPlatform()
 //}
+
+jar {
+	enabled = false
+}
