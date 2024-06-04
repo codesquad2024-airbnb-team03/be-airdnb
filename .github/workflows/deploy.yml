@@ -34,7 +34,7 @@ jobs:
       
     - name: Make db-config.yml
       run: |
-          cd ${{ github.workspace }}/be-airdnb/src/main/resources
+          cd ${{ github.workspace }}/src/main/resources
           echo "${{ secrets.DB_CONFIG }}" | base64 --decode > ./db-config.yml
       shell: bash
 
