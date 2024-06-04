@@ -36,7 +36,6 @@ jobs:
       run: |
           cd ${{ github.workspace }}/be/issue_tracker/src/main/resources
           echo "${{ secrets.DB_CONFIG }}" | base64 --decode > ./db-config.yml
-          echo "${{ secrets.JWT_CONFIG }}" | base64 --decode > ./jwt.yml
       shell: bash
 
 
@@ -52,8 +51,8 @@ jobs:
       run: |
             echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
             cd ${{ github.workspace }}/be/issue_tracker
-            docker build -f ./Dockerfile -t ${{ secrets.DOCKER_REPO }}/issue_tracker:latest . 
-            docker push ${{ secrets.DOCKER_REPO }}/issue_tracker:latest
+            docker build -f ./Dockerfile -t ${{ secrets.DOCKER_REPO }}:latest . 
+            docker push ${{ secrets.DOCKER_REPO }}:latest
 
   deploy:
       needs: build
