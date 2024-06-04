@@ -1,0 +1,70 @@
+name: CD with Gradle
+
+on:
+   push:
+     branches: [ "dev-be" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: "corretto"
+        cache: gradle
+
+    - name: Gradle Caching
+      uses: actions/cache@v4
+      with:
+         path: |  
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+         restore-keys: |
+           ${{ runner.os }}-gradle-
+      
+    - name: Make db-config.yml
+      run: |
+          cd ${{ github.workspace }}/be/issue_tracker/src/main/resources
+          echo "${{ secrets.DB_CONFIG }}" | base64 --decode > ./db-config.yml
+          echo "${{ secrets.JWT_CONFIG }}" | base64 --decode > ./jwt.yml
+      shell: bash
+
+
+     
+    - name: Build with Gradle
+      run: |
+            chmod +x ${{ github.workspace }}/be/issue_tracker/gradlew
+            cd ${{ github.workspace }}/be/issue_tracker
+            ./gradlew build -x test
+
+
+    - name: Docker build & push to docker repo
+      run: |
+            echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+            cd ${{ github.workspace }}/be/issue_tracker
+            docker build -f ./Dockerfile -t ${{ secrets.DOCKER_REPO }}/issue_tracker:latest . 
+            docker push ${{ secrets.DOCKER_REPO }}/issue_tracker:latest
+
+  deploy:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+       - name: Deploy to server
+         uses: appleboy/ssh-action@master
+         with:
+           host: ${{ secrets.EC2_HOST }}
+           username: ${{ secrets.EC2_USERNAME }}
+           key: ${{ secrets.EC2_SSH_KEY }}
+           script: |
+               ./single.sh
+               ./deploy.sh
