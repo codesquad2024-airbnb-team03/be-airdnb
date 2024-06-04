@@ -63,5 +63,8 @@ jobs:
            username: ${{ secrets.EC2_USERNAME }}
            key: ${{ secrets.EC2_SSH_KEY }}
            script: |
-               ./single.sh
-               ./deploy.sh
+              sudo docker rm -f $(docker ps -aq --filter name=airdnb)
+              sudo docker pull ${{ secrets.DOCKER_REPO }}:latest
+              sudo docker run -d -p 8080:8080 --name airdnb ${{ secrets.DOCKER_REPO }}:latest 
+              sudo docker image prune -f
+              sudo docker volume prune -f
