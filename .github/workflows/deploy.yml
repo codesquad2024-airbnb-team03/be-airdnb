@@ -38,11 +38,11 @@ jobs:
           echo "${{ secrets.DB_CONFIG }}" > ./db-config.yml
       shell: bash
 
-
      
     - name: Build with Gradle
       run: |
-            chmod +x ./gradlew
+            chmod +x ${{ github.workspace }}/gradlew
+            cd ${{ github.workspace }}
             ./gradlew build -x test
 
     - name: Docker build & push to docker repo
