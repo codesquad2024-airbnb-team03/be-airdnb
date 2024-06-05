@@ -15,8 +15,8 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime checkin;
-    private LocalDateTime checkout;
+    private LocalDateTime checkIn;
+    private LocalDateTime checkOut;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

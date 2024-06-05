@@ -19,12 +19,15 @@ public class Accommodation {
 
     private String name;
     private String profileImg;
-    private String address;
+
+    @Embedded
+    private Address address;
+
     private Long price;
-    private int headcount;
-    private int bed_count;
-    private int bedroom_count;
-    private int bathroom_count;
+    private int headCount;
+    private int bedCount;
+    private int bedroomCount;
+    private int bathroomCount;
 
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<Reservation> reservations = new ArrayList<>();
