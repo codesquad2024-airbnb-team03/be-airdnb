@@ -1,8 +1,11 @@
 package team03.airdnb.accommodation;
 
 import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
 
 @Embeddable
+@Getter @Setter
 public class Address {
 
     private String firstAddress; // 광역시/도
