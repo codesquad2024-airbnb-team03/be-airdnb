@@ -14,7 +14,6 @@ public class AccommodationListDto {
     private String profileImg;
     private Address address;
     private Long price;
-    private String totalPrice;
     private int headcount;
     private int bed_count;
     private int bedroom_count;

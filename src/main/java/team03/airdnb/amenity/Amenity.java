@@ -1,13 +1,15 @@
 package team03.airdnb.amenity;
 
 import jakarta.persistence.*;
-import team03.airdnb.accommodation.AccommodationAmenity;
+import lombok.Getter;
+import team03.airdnb.AccommodationAmenity.AccommodationAmenity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "AMENITYS")
+@Getter
 public class Amenity {
 
     @Id

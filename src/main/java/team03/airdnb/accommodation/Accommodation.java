@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import team03.airdnb.AccommodationAmenity.AccommodationAmenity;
 import team03.airdnb.like.Like;
 import team03.airdnb.reservation.Reservation;
 import team03.airdnb.review.Review;
