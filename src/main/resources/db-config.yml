@@ -4,3 +4,15 @@ spring:
     username: 'team03'
     password: 'team03!'
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        #        show_sql: true
+        format_sql: true
+
+  logging:
+    level:
+      org.hibernate.sql: debug
