@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: 'jdbc:mysql://43.203.193.163:3306/airdnb_db'
+    url: 'jdbc:mysql://54.180.227.55:3306/airdnb_db'
     username: 'team03'
     password: 'team03!'
     driver-class-name: com.mysql.cj.jdbc.Driver

@@ -1,6 +1,10 @@
 package team03.airdnb.accommodation;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import team03.airdnb.like.Like;
 import team03.airdnb.reservation.Reservation;
 import team03.airdnb.review.Review;
@@ -11,6 +15,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "ACCOMMODATIONS")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
 public class Accommodation {
 
     @Id
@@ -24,6 +32,7 @@ public class Accommodation {
     private Address address;
 
     private Long price;
+    private double averageGrade;
     private int headCount;
     private int bedCount;
     private int bedroomCount;
