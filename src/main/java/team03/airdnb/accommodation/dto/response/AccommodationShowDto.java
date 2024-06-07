@@ -20,9 +20,9 @@ public class AccommodationShowDto {
     private Long price;
     private Long fee;
     private int headcount;
-    private int bed_count;
-    private int bedroom_count;
-    private int bathroom_count;
+    private int bedCount;
+    private int bedroomCount;
+    private int bathroomCount;
     private List<String> amenities;
     private double averageGrade;
     private int reviewCount;
