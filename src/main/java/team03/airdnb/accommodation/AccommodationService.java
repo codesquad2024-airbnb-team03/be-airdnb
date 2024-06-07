@@ -39,4 +39,8 @@ public class AccommodationService {
         User host = userRepository.findById(accommodationUpdateDto.getHostId()).get(); // 예외처리 추가할 예정입니다!
         accommodationRepository.save(accommodationUpdateDto.toEntity(host));
     }
+
+    public void deleteAccommodation(Long accommodationId) {
+        accommodationRepository.deleteById(accommodationId);
+    }
 }

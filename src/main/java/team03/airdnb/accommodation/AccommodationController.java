@@ -42,4 +42,13 @@ public class AccommodationController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/{accommodationId}")
+    public ResponseEntity<Void> deleteAccommodation(@PathVariable Long accommodationId) {
+        accommodationService.deleteAccommodation(accommodationId);
+
+        return ResponseEntity
+                .noContent()
+                .build();
+    }
 }
