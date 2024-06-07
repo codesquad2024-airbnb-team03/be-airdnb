@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
 import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
+import team03.airdnb.accommodation.dto.response.AccommodationListDto;
 import team03.airdnb.accommodation.dto.response.AccommodationShowDto;
 import team03.airdnb.user.User;
 import team03.airdnb.user.UserRepository;
@@ -23,16 +24,19 @@ public class AccommodationService {
         return accommodationRepository.save(accommodationSaveDto.toEntity(host));
     }
 
+    public List<AccommodationListDto> showAccommodationList() {
+        List<Accommodation> accommodationList = accommodationRepository.findAll();
+
+        return accommodationList.stream()
+                .map(accommodation -> AccommodationListDto.of(accommodation, accommodation.getAccommodationAmenities()))
+                .collect(Collectors.toList());
+    }
+
     public AccommodationShowDto showAccommodationDetail(Long accommodationId) {
         Accommodation accommodation = accommodationRepository.findById(accommodationId).get(); // 예외처리 추가할 예정입니다!
 
-        // 숙소의 amenity 모두 가져오기
-        List<String> amenities = accommodation.getAccommodationAmenities().stream()
-                .map(accommodationAmenity -> accommodationAmenity.getAmenity().getName())
-                .collect(Collectors.toList());
-
         // 수수료(fee) 관련해서는 아직 구현하지 못해 임의의 숫자를 넣었습니다.
-        return AccommodationShowDto.of(accommodation, 10000L, amenities);
+        return AccommodationShowDto.of(accommodation, 10000L, accommodation.getAccommodationAmenities());
     }
 
     public void updateAccommodation(AccommodationUpdateDto accommodationUpdateDto) {

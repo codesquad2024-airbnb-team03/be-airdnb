@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
 import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
+import team03.airdnb.accommodation.dto.response.AccommodationListDto;
 import team03.airdnb.accommodation.dto.response.AccommodationShowDto;
 
 import java.net.URI;
+import java.util.List;
 
 @RequestMapping("/accommodations")
 @RestController
@@ -27,6 +29,13 @@ public class AccommodationController {
         return ResponseEntity
                 .created(location)
                 .build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<AccommodationListDto>> showAccommodationList() {
+        List<AccommodationListDto> accommodationListDtos = accommodationService.showAccommodationList();
+
+        return ResponseEntity.ok(accommodationListDtos);
     }
 
     @GetMapping("/{accommodationId}")
