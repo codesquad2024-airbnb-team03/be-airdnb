@@ -1,6 +1,7 @@
 package team03.airdnb.user;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.like.Like;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "USERS")
+@Getter
 public class User {
 
     @Id

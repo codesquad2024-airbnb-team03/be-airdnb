@@ -1,10 +1,13 @@
-package team03.airdnb.accommodation;
+package team03.airdnb.AccommodationAmenity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.amenity.Amenity;
 
 @Entity
 @Table(name = "ACCOMMODATIONS_AMENITY")
+@Getter
 public class AccommodationAmenity {
 
     @Id
