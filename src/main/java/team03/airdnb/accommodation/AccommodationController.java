@@ -1,17 +1,14 @@
 package team03.airdnb.accommodation;
 
-import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
+import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
 import team03.airdnb.accommodation.dto.response.AccommodationShowDto;
+
+import java.net.URI;
 
 @RequestMapping("/accommodations")
 @RestController
@@ -32,11 +29,17 @@ public class AccommodationController {
                 .build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<AccommodationShowDto> showAccommodationDetail(@PathVariable("id") Long accommodationId) {
+    @GetMapping("/{accommodationId}")
+    public ResponseEntity<AccommodationShowDto> showAccommodationDetail(@PathVariable Long accommodationId) {
         AccommodationShowDto accommodationShowDto = accommodationService.showAccommodationDetail(accommodationId);
 
         return ResponseEntity.ok(accommodationShowDto);
     }
 
+    @PutMapping
+    public ResponseEntity<Void> updateAccommodation(@RequestBody AccommodationUpdateDto accommodationUpdateDto) {
+        accommodationService.updateAccommodation(accommodationUpdateDto);
+
+        return ResponseEntity.noContent().build();
+    }
 }
