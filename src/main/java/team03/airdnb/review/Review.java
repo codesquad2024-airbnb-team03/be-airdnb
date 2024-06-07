@@ -1,6 +1,7 @@
 package team03.airdnb.review;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.user.User;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "REVIEWS")
+@Getter
 public class Review {
 
     @Id

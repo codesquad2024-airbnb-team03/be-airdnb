@@ -15,10 +15,10 @@ public class AccommodationSaveDto {
     private Address address;
     private Long price;
     private int headcount;
-    private int bed_count;
-    private int bedroom_count;
-    private int bathroom_count;
-    private Long host_id;
+    private int bedCount;
+    private int bedroomCount;
+    private int bathroomCount;
+    private Long hostId;
 
     public Accommodation toEntity(User host){
         return Accommodation.builder()
@@ -27,9 +27,9 @@ public class AccommodationSaveDto {
                 .address(this.address)
                 .price(this.price)
                 .headCount(this.headcount)
-                .bedCount(this.bed_count)
-                .bedroomCount(this.bedroom_count)
-                .bathroomCount(this.bathroom_count)
+                .bedCount(this.bedCount)
+                .bedroomCount(this.bedroomCount)
+                .bathroomCount(this.bathroomCount)
                 .host(host)
                 .build();
     }

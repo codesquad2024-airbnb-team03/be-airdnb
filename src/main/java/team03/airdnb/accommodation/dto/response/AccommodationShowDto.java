@@ -5,7 +5,8 @@ import lombok.Getter;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.accommodation.Address;
 import team03.airdnb.review.Review;
-import team03.airdnb.user.User;
+import team03.airdnb.review.dto.response.ReviewShowDto;
+import team03.airdnb.user.dto.response.UserShowDto;
 
 import java.util.List;
 
@@ -25,17 +26,32 @@ public class AccommodationShowDto {
     private List<String> amenities;
     private double averageGrade;
     private int reviewCount;
-    private List<Review> reviews;
-    private User host;
+    private List<ReviewShowDto> reviews;
+    private UserShowDto host;
 
-    public static AccommodationShowDto of(Accommodation accommodation, Long fee,
-                                          List<String> amenities,
-                                          double averageGrade, int reviewCount, List<Review> reviews) {
-        return new AccommodationShowDto(accommodation.getName(), accommodation.getProfileImg(),
-                accommodation.getAddress(), accommodation.getPrice(), fee, accommodation.getHeadCount(),
-                accommodation.getBedCount(), accommodation.getBedroomCount(), accommodation.getBathroomCount(),
+    public static AccommodationShowDto of(Accommodation accommodation, Long fee, List<String> amenities) {
+        return new AccommodationShowDto(
+                accommodation.getName(),
+                accommodation.getProfileImg(),
+                accommodation.getAddress(),
+                accommodation.getPrice(),
+                fee,
+                accommodation.getHeadCount(),
+                accommodation.getBedCount(),
+                accommodation.getBedroomCount(),
+                accommodation.getBathroomCount(),
                 amenities,
-                averageGrade, reviewCount, reviews, accommodation.getHost()
+                accommodation.getAverageGrade(),
+                accommodation.getReviews().size(),
+                reviewsToDto(accommodation.getReviews()),
+                UserShowDto.of(accommodation.getHost())
         );
+    }
+
+    // List<reviews>를 List<ReviewShowDto>로 변환하기
+    private static List<ReviewShowDto> reviewsToDto(List<Review> reviews) {
+        return reviews.stream()
+                .map(ReviewShowDto::of)
+                .toList();
     }
 }
