@@ -56,4 +56,13 @@ public class AccommodationService {
         double updatedAverageGrade = (currentAverageGrade * reviewCount + addedGrade) / (reviewCount + 1);
         accommodationRepository.updateAverageGrade(accommodationId, updatedAverageGrade);
     }
+
+    public void updateAverageGradeOnReviewDelete (Long accommodationId, double deletedGrade) {
+        Accommodation accommodation = accommodationRepository.findById(accommodationId).get();
+        double currentAverageGrade = accommodation.getAverageGrade();
+        int reviewCount = accommodation.getReviews().size() + 1; // 삭제 전 개수
+
+        double updatedAverageGrade = (currentAverageGrade * reviewCount - deletedGrade) / (reviewCount - 1);
+        accommodationRepository.updateAverageGrade(accommodationId, updatedAverageGrade);
+    }
 }
