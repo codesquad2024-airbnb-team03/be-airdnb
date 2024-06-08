@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import team03.airdnb.review.dto.request.ReviewSaveDto;
+import team03.airdnb.review.dto.request.ReviewUpdateDto;
 
 import java.net.URI;
 
@@ -25,6 +26,13 @@ public class ReviewController {
         return ResponseEntity
                 .created(location)
                 .build();
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> updateReview(@RequestBody ReviewUpdateDto reviewUpdateDto) {
+        reviewService.updateReview(reviewUpdateDto);
+
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{reviewId}")
