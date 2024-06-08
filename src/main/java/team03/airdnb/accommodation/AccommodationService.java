@@ -47,4 +47,13 @@ public class AccommodationService {
     public void deleteAccommodation(Long accommodationId) {
         accommodationRepository.deleteById(accommodationId);
     }
+
+    public void updateAverageGradeOnReviewAdd(Long accommodationId, double addedGrade) {
+        Accommodation accommodation = accommodationRepository.findById(accommodationId).get();
+        double currentAverageGrade = accommodation.getAverageGrade();
+        int reviewCount = accommodation.getReviews().size();
+
+        double updatedAverageGrade = (currentAverageGrade * reviewCount + addedGrade) / (reviewCount + 1);
+        accommodationRepository.updateAverageGrade(accommodationId, updatedAverageGrade);
+    }
 }
