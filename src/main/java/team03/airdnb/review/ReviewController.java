@@ -2,10 +2,7 @@ package team03.airdnb.review;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import team03.airdnb.review.dto.request.ReviewSaveDto;
 
@@ -27,6 +24,15 @@ public class ReviewController {
 
         return ResponseEntity
                 .created(location)
+                .build();
+    }
+
+    @DeleteMapping("/{reviewId}")
+    public ResponseEntity<Void> deleteReview(@PathVariable Long reviewId) {
+        reviewService.deleteReview(reviewId);
+
+        return ResponseEntity
+                .noContent()
                 .build();
     }
 }
