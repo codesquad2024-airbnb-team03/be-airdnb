@@ -5,7 +5,6 @@ import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.user.User;
 
 @Entity
-@Table(name = "LIKES")
 public class Like {
 
     @Id

@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "ACCOMMODATIONS")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

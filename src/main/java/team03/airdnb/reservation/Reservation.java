@@ -8,7 +8,6 @@ import team03.airdnb.user.User;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "RESERVATIONS")
 public class Reservation {
 
     @Id

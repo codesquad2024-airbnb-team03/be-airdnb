@@ -6,7 +6,7 @@ import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.amenity.Amenity;
 
 @Entity
-@Table(name = "ACCOMMODATIONS_AMENITY")
+@Table(name = "accommodation_amenity")
 @Getter
 public class AccommodationAmenity {
 
