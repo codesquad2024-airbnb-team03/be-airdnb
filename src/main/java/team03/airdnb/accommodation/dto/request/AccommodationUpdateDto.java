@@ -21,13 +21,14 @@ public class AccommodationUpdateDto {
     private int bathroomCount;
     private Long hostId;
 
-    public Accommodation toEntity(User host){
+    public Accommodation toEntity(User host, double averageGrade){
         return Accommodation.builder()
                 .id(this.id)
                 .name(this.name)
                 .profileImg(this.profileImg)
                 .address(this.address)
                 .price(this.price)
+                .averageGrade(averageGrade)
                 .headCount(this.headcount)
                 .bedCount(this.bedCount)
                 .bedroomCount(this.bedroomCount)
