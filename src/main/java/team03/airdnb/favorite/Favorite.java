@@ -1,12 +1,11 @@
-package team03.airdnb.like;
+package team03.airdnb.favorite;
 
 import jakarta.persistence.*;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.user.User;
 
 @Entity
-@Table(name = "LIKES")
-public class Like {
+public class Favorite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
