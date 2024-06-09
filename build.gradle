@@ -31,9 +31,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 }
 
-//tasks.named('test') {
-//	useJUnitPlatform()
-//}
+tasks.named('test') {
+	useJUnitPlatform()
+}
 
 jar {
 	enabled = false
