@@ -12,7 +12,6 @@ import team03.airdnb.user.User;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "REVIEWS")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
