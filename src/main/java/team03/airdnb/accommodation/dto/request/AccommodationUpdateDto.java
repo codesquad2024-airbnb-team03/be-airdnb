@@ -15,7 +15,7 @@ public class AccommodationUpdateDto {
     private String profileImg;
     private Address address;
     private Long price;
-    private int headcount;
+    private int maxHeadCount;
     private int bedCount;
     private int bedroomCount;
     private int bathroomCount;
@@ -29,7 +29,7 @@ public class AccommodationUpdateDto {
                 .address(this.address)
                 .price(this.price)
                 .averageGrade(averageGrade)
-                .headCount(this.headcount)
+                .maxHeadCount(this.maxHeadCount)
                 .bedCount(this.bedCount)
                 .bedroomCount(this.bedroomCount)
                 .bathroomCount(this.bathroomCount)

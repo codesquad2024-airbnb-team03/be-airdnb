@@ -22,7 +22,7 @@ public class AccommodationShowDto {
     private Address address;
     private Long price;
     private Long fee;
-    private int headcount;
+    private int maxHeadCount;
     private int bedCount;
     private int bedroomCount;
     private int bathroomCount;
@@ -40,7 +40,7 @@ public class AccommodationShowDto {
                 accommodation.getAddress(),
                 accommodation.getPrice(),
                 fee,
-                accommodation.getHeadCount(),
+                accommodation.getMaxHeadCount(),
                 accommodation.getBedCount(),
                 accommodation.getBedroomCount(),
                 accommodation.getBathroomCount(),
