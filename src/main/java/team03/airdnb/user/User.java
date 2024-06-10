@@ -6,19 +6,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
-import org.hibernate.annotations.CreationTimestamp;
 import team03.airdnb.accommodation.Accommodation;
+import team03.airdnb.common.BaseEntity;
 import team03.airdnb.favorite.Favorite;
 import team03.airdnb.reservation.Reservation;
 import team03.airdnb.review.Review;
 
 @Entity
 @Getter
-public class User {
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +37,4 @@ public class User {
 
     @OneToMany(mappedBy = "host", cascade = CascadeType.ALL)
     private List<Accommodation> accommodations = new ArrayList<>();
-
-    @CreationTimestamp
-    private LocalDateTime createdAt;
 }

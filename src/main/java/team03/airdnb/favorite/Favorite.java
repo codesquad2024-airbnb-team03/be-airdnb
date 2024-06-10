@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import team03.airdnb.accommodation.Accommodation;
+import team03.airdnb.common.BaseEntity;
 import team03.airdnb.user.User;
 
 @Entity
@@ -13,7 +14,7 @@ import team03.airdnb.user.User;
 @AllArgsConstructor
 @Builder
 @Getter
-public class Favorite {
+public class Favorite extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,10 +6,11 @@ import team03.airdnb.accommodationAmenity.AccommodationAmenity;
 
 import java.util.ArrayList;
 import java.util.List;
+import team03.airdnb.common.BaseEntity;
 
 @Entity
 @Getter
-public class Amenity {
+public class Amenity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
