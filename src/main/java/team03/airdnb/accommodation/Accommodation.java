@@ -41,6 +41,7 @@ public class Accommodation {
 
     private Long price;
     private double averageGrade;
+    private int maxHeadCount;
     private int headCount;
     private int bedCount;
     private int bedroomCount;
