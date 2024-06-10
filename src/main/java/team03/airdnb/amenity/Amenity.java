@@ -2,7 +2,7 @@ package team03.airdnb.amenity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import team03.airdnb.AccommodationAmenity.AccommodationAmenity;
+import team03.airdnb.accommodationAmenity.AccommodationAmenity;
 
 import java.util.ArrayList;
 import java.util.List;
