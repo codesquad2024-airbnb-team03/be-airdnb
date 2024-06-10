@@ -18,7 +18,7 @@ public class AccommodationListDto {
     private String profileImg;
     private Address address;
     private Long price;
-    private int headcount;
+    private int maxHeadCount;
     private int bedCount;
     private int bedroomCount;
     private int bathroomCount;
@@ -33,7 +33,7 @@ public class AccommodationListDto {
                 accommodation.getProfileImg(),
                 accommodation.getAddress(),
                 accommodation.getPrice(),
-                accommodation.getHeadCount(),
+                accommodation.getMaxHeadCount(),
                 accommodation.getBedCount(),
                 accommodation.getBedroomCount(),
                 accommodation.getBathroomCount(),

@@ -1,17 +1,6 @@
 package team03.airdnb.accommodation;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,6 +10,9 @@ import team03.airdnb.favorite.Favorite;
 import team03.airdnb.reservation.Reservation;
 import team03.airdnb.review.Review;
 import team03.airdnb.user.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -42,7 +34,6 @@ public class Accommodation {
     private Long price;
     private double averageGrade;
     private int maxHeadCount;
-    private int headCount;
     private int bedCount;
     private int bedroomCount;
     private int bathroomCount;
