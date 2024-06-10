@@ -1,10 +1,18 @@
 package team03.airdnb.favorite;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.user.User;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
 public class Favorite {
 
     @Id
