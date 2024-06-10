@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.user.User;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,8 +23,8 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime checkIn;
-    private LocalDateTime checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private int headCount;
 
     @ManyToOne(fetch = FetchType.LAZY)

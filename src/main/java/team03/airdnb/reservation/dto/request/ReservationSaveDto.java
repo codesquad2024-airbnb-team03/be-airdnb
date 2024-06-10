@@ -6,14 +6,15 @@ import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.reservation.Reservation;
 import team03.airdnb.user.User;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
 public class ReservationSaveDto {
 
-    private LocalDateTime checkIn;
-    private LocalDateTime checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
     private int headCount;
     private Long userId;
     private Long accommodationId;
