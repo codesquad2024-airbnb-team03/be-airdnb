@@ -1,6 +1,10 @@
 package team03.airdnb.reservation;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.user.User;
@@ -8,6 +12,10 @@ import team03.airdnb.user.User;
 import java.time.LocalDateTime;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
 public class Reservation {
 
     @Id
@@ -16,6 +24,7 @@ public class Reservation {
 
     private LocalDateTime checkIn;
     private LocalDateTime checkOut;
+    private int headCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
