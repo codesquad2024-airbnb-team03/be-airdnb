@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import team03.airdnb.accommodationAmenity.AccommodationAmenity;
+import team03.airdnb.common.BaseEntity;
 import team03.airdnb.favorite.Favorite;
 import team03.airdnb.reservation.Reservation;
 import team03.airdnb.review.Review;
@@ -19,7 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Getter
-public class Accommodation {
+public class Accommodation extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
