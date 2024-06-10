@@ -21,4 +21,8 @@ public class ReservationService {
         Accommodation accommodation = accommodationRepository.findById(reservationSaveDto.getAccommodationId()).get(); // 예외처리 추가할 예정입니다!
         return reservationRepository.save(reservationSaveDto.toEntity(user, accommodation));
     }
+
+    public void deleteReservation(Long reservationId) {
+        reservationRepository.deleteById(reservationId);
+    }
 }
