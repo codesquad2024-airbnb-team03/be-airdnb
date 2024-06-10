@@ -20,17 +20,17 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/{userId}/reservations")
-    public ResponseEntity<List<ReservationShowDto>> showReservation(@PathVariable Long userId) {
+    public ResponseEntity<List<ReservationShowDto>> showReservations(@PathVariable Long userId) {
         return ResponseEntity.ok(userService.showReservations(userId));
     }
 
     @GetMapping("/{userId}/favorites")
-    public ResponseEntity<List<AccommodationListDto>> showFavoriteList(@PathVariable Long userId) {
-        return ResponseEntity.ok(userService.showFavoriteList(userId));
+    public ResponseEntity<List<AccommodationListDto>> showFavorites(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.showFavorites(userId));
     }
 
     @GetMapping("/{userId}/reviews")
-    public ResponseEntity<List<ReviewShowDto>> showReviewList(@PathVariable Long userId) {
-        return ResponseEntity.ok(userService.showReviewList(userId));
+    public ResponseEntity<List<ReviewShowDto>> showReviews(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.showReviews(userId));
     }
 }
