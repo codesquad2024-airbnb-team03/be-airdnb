@@ -2,7 +2,7 @@ package team03.airdnb.accommodation.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import team03.airdnb.AccommodationAmenity.AccommodationAmenity;
+import team03.airdnb.accommodationAmenity.AccommodationAmenity;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.accommodation.Address;
 

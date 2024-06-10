@@ -1,4 +1,4 @@
-package team03.airdnb.AccommodationAmenity;
+package team03.airdnb.accommodationAmenity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
