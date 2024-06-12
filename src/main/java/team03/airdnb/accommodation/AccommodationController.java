@@ -3,6 +3,7 @@ package team03.airdnb.accommodation;
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -71,14 +72,18 @@ public class AccommodationController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<List<Accommodation>> filterAccommodations(@RequestParam LocalDate checkIn,
-                                                                    @RequestParam LocalDate checkOut,
-                                                                    @RequestParam Double minPrice,
-                                                                    @RequestParam Double maxPrice,
-                                                                    @RequestParam Integer capacity) {
+    public ResponseEntity<List<AccommodationListDto>> filterAccommodations(@RequestParam LocalDate checkIn,
+                                                                           @RequestParam LocalDate checkOut,
+                                                                           @RequestParam Double minPrice,
+                                                                           @RequestParam Double maxPrice,
+                                                                           @RequestParam Integer capacity) {
         List<Accommodation> accommodationsByFilters = accommodationService.findAccommodationsByFilters(checkIn,
                 checkOut, minPrice, maxPrice, capacity);
 
-        return ResponseEntity.ok(accommodationsByFilters);
+        List<AccommodationListDto> accommodationListDtos = accommodationsByFilters.stream()
+                .map(accommodation -> AccommodationListDto.of(accommodation, accommodation.getAccommodationAmenities()))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(accommodationListDtos);
     }
 }
