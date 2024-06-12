@@ -1,5 +1,8 @@
 package team03.airdnb.accommodation;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
@@ -8,9 +11,6 @@ import team03.airdnb.accommodation.dto.response.AccommodationListDto;
 import team03.airdnb.accommodation.dto.response.AccommodationShowDto;
 import team03.airdnb.user.User;
 import team03.airdnb.user.UserRepository;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -77,5 +77,9 @@ public class AccommodationService {
 
         double updatedAverageGrade = (previousAverageGrade * reviewCount - deletedGrade) / (reviewCount - 1);
         accommodationRepository.updateAverageGrade(accommodationId, updatedAverageGrade);
+    }
+
+    public List<Accommodation> findAccommodationsByFilters(LocalDate checkIn, LocalDate checkOut, Double minPrice, Double maxPrice, Integer capacity) {
+        return accommodationRepository.findAccommodationsByFilters(checkIn, checkOut, minPrice, maxPrice, capacity);
     }
 }
