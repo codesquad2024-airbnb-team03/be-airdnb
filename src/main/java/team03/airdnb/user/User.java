@@ -1,7 +1,10 @@
 package team03.airdnb.user;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.common.BaseEntity;
 import team03.airdnb.favorite.Favorite;
@@ -12,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Getter
 public class User extends BaseEntity {
 
