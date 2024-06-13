@@ -1,7 +1,6 @@
 package team03.airdnb.accommodation;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
+import team03.airdnb.accommodation.dto.request.AccommodationFilterDto;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
 import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
 import team03.airdnb.accommodation.dto.response.AccommodationListDto;
@@ -29,9 +28,9 @@ public class AccommodationController {
     private final AccommodationService accommodationService;
 
     @PostMapping
-    public ResponseEntity<Void> createAccommodation(@RequestBody AccommodationSaveDto accommodationSaveDto,
+    public ResponseEntity<Void> createAccommodation(@RequestBody AccommodationSaveDto saveDto,
                                                     UriComponentsBuilder uriComponentsBuilder) {
-        Accommodation createdAccommodation = accommodationService.createAccommodation(accommodationSaveDto);
+        Accommodation createdAccommodation = accommodationService.createAccommodation(saveDto);
         URI location = uriComponentsBuilder.path("/accommodations/{id}")
                 .buildAndExpand(createdAccommodation.getId())
                 .toUri();
@@ -56,8 +55,8 @@ public class AccommodationController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> updateAccommodation(@RequestBody AccommodationUpdateDto accommodationUpdateDto) {
-        accommodationService.updateAccommodation(accommodationUpdateDto);
+    public ResponseEntity<Void> updateAccommodation(@RequestBody AccommodationUpdateDto updateDto) {
+        accommodationService.updateAccommodation(updateDto);
 
         return ResponseEntity.noContent().build();
     }
@@ -72,13 +71,8 @@ public class AccommodationController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<List<AccommodationListDto>> filterAccommodations(@RequestParam LocalDate checkIn,
-                                                                           @RequestParam LocalDate checkOut,
-                                                                           @RequestParam Double minPrice,
-                                                                           @RequestParam Double maxPrice,
-                                                                           @RequestParam Integer capacity) {
-        List<Accommodation> accommodationsByFilters = accommodationService.findAccommodationsByFilters(checkIn,
-                checkOut, minPrice, maxPrice, capacity);
+    public ResponseEntity<List<AccommodationListDto>> filterAccommodations(@RequestBody AccommodationFilterDto filterDto) {
+        List<Accommodation> accommodationsByFilters = accommodationService.findAccommodationsByFilters(filterDto);
 
         List<AccommodationListDto> accommodationListDtos = accommodationsByFilters.stream()
                 .map(accommodation -> AccommodationListDto.of(accommodation, accommodation.getAccommodationAmenities()))
