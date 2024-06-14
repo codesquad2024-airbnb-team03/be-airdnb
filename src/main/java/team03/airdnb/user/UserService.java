@@ -50,7 +50,8 @@ public class UserService {
 
         for (Favorite favorite : favorites) {
             Accommodation accommodation = favorite.getAccommodation();
-            AccommodationListDto accommodationListDto = AccommodationListDto.of(accommodation, accommodation.getAccommodationAmenities());
+            AccommodationListDto accommodationListDto = AccommodationListDto.of(accommodation,
+                    accommodation.getAccommodationAmenities());
             accommodationListDtos.add(accommodationListDto);
         }
 
@@ -61,13 +62,6 @@ public class UserService {
         User user = userRepository.findById(userId).get();
         List<Review> reviews = user.getReviews();
 
-        List<ReviewShowDto> reviewShowDtos = new ArrayList<>();
-
-        for (Review review: reviews) {
-            ReviewShowDto reviewShowDto = ReviewShowDto.of(review);
-            reviewShowDtos.add(reviewShowDto);
-        }
-
-        return reviewShowDtos;
+        return reviews.stream().map(ReviewShowDto::of).collect(Collectors.toList());
     }
 }
