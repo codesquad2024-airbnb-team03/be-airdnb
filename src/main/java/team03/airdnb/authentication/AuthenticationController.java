@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,11 +21,10 @@ public class AuthenticationController {
     private static final String LOGIN_FAILURE_MESSAGE = "잘못된 로그인 정보 입니다.";
 
     private final AuthenticationManager authenticationManager;
-    private final MyUserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
 
     @PostMapping("/authenticate")
-    public ResponseEntity<JwtResultDto> login(@RequestBody LoginDto loginDto) throws Exception {
+    public ResponseEntity<JwtResultDto> login(@RequestBody LoginDto loginDto) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getName(), loginDto.getPassword()));
         } catch (AuthenticationException e) {
@@ -35,8 +33,7 @@ public class AuthenticationController {
                     .body(new JwtResultDto(null, LOGIN_FAILURE_MESSAGE));
         }
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(loginDto.getName());
-        final String jwt = jwtUtil.generateToken(userDetails.getUsername());
+        final String jwt = jwtUtil.generateToken(loginDto.getName());
 
         return ResponseEntity
                 .ok()

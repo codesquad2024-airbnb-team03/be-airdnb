@@ -19,7 +19,12 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByName(username).orElseThrow(() -> new UsernameNotFoundException("사용자가 존재하지 않습니다: " + username));
+        String password = user.getPassword() != null ? user.getPassword() : "";
 
-        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), new ArrayList<>());
+        return new org.springframework.security.core.userdetails.User(
+                user.getName(),
+                password, // (일반 로그인: 실제 password, OAuth 로그인: 빈 문자열)
+                new ArrayList<>() // 권한 목록
+        );
     }
 }
