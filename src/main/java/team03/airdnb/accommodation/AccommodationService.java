@@ -19,9 +19,10 @@ public class AccommodationService {
     private final AccommodationRepository accommodationRepository;
     private final UserRepository userRepository;
 
-    public Accommodation createAccommodation(AccommodationSaveDto saveDto) {
+    public Long createAccommodation(AccommodationSaveDto saveDto) {
         User host = userRepository.findById(saveDto.getHostId()).get(); // 예외처리 추가할 예정입니다!
-        return accommodationRepository.save(saveDto.toEntity(host));
+        Accommodation savedAccommodation = accommodationRepository.save(saveDto.toEntity(host));
+        return savedAccommodation.getId();
     }
 
     public List<AccommodationListDto> showAccommodationList() {
@@ -70,7 +71,7 @@ public class AccommodationService {
     }
 
     // Review 삭제시 Accommodation averageGrade 업데이트
-    public void updateAverageGradeOnReviewDelete (Long accommodationId, double deletedGrade) {
+    public void updateAverageGradeOnReviewDelete(Long accommodationId, double deletedGrade) {
         Accommodation accommodation = accommodationRepository.findById(accommodationId).get();
         double previousAverageGrade = accommodation.getAverageGrade();
         int reviewCount = accommodation.getReviews().size() + 1; // 삭제 전 개수
@@ -79,7 +80,10 @@ public class AccommodationService {
         accommodationRepository.updateAverageGrade(accommodationId, updatedAverageGrade);
     }
 
-    public List<Accommodation> findAccommodationsByFilters(AccommodationFilterDto filterDto) {
-        return accommodationRepository.findAccommodationsByFilters(filterDto);
+    public List<AccommodationListDto> findAccommodationsByFilters(AccommodationFilterDto filterDto) {
+        List<Accommodation> accommodationsByFilters = accommodationRepository.findAccommodationsByFilters(filterDto);
+        return accommodationsByFilters.stream()
+                .map(accommodation -> AccommodationListDto.of(accommodation, accommodation.getAccommodationAmenities()))
+                .collect(Collectors.toList());
     }
 }
