@@ -2,12 +2,15 @@ package team03.airdnb.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import team03.airdnb.accommodation.dto.response.AccommodationListDto;
 import team03.airdnb.reservation.dto.response.ReservationShowDto;
 import team03.airdnb.review.dto.response.ReviewShowDto;
 import team03.airdnb.user.dto.request.UserSaveDto;
+import team03.airdnb.user.dto.response.UserShowDto;
 
 import java.net.URI;
 import java.util.List;
@@ -29,6 +32,12 @@ public class UserController {
         return ResponseEntity
                 .created(location)
                 .build();
+    }
+
+    @GetMapping
+    public ResponseEntity<UserShowDto> showLoginUser(@AuthenticationPrincipal UserDetails userDetails) {
+        UserShowDto userShowDto = userService.showLoginUser(userDetails.getUsername());
+        return ResponseEntity.ok(userShowDto);
     }
 
     @GetMapping("/{userId}/reservations")

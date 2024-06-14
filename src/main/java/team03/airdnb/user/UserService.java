@@ -10,6 +10,7 @@ import team03.airdnb.reservation.dto.response.ReservationShowDto;
 import team03.airdnb.review.Review;
 import team03.airdnb.review.dto.response.ReviewShowDto;
 import team03.airdnb.user.dto.request.UserSaveDto;
+import team03.airdnb.user.dto.response.UserShowDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,11 @@ public class UserService {
         String encodedPassword = passwordEncoder.encode(userSaveDto.getPassword());
         userSaveDto.setPassword(encodedPassword);
         return userRepository.save(userSaveDto.toEntity());
+    }
+
+    public UserShowDto showLoginUser(String name) {
+        User loginUser = userRepository.findByName(name).get();
+        return UserShowDto.of(loginUser);
     }
 
     public List<ReservationShowDto> showReservations(Long userId) {
