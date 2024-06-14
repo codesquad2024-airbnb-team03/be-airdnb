@@ -1,4 +1,4 @@
-package team03.airdnb.authentication;
+package team03.airdnb.authentication.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import team03.airdnb.authentication.jwt.JwtUtil;
+import team03.airdnb.authentication.MyUserDetailsService;
 
 import java.io.IOException;
 
@@ -29,12 +29,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
         final String authorizationHeader = request.getHeader(AUTHORIZATION);
-
         String jwt = jwtUtil.getJwtTokenFromHeader(authorizationHeader);
         if (jwt != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             authenticateUser(jwt, request, response);
         }
-
         chain.doFilter(request, response);
     }
 

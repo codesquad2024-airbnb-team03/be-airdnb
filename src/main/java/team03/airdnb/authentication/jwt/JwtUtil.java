@@ -4,6 +4,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -14,11 +16,17 @@ import java.util.Map;
 @Component
 public class JwtUtil {
 
-    // yml 파일로 옮길 예정입니다
-    private final SecretKey SECRET_KEY = Keys.hmacShaKeyFor("skfd23k#sfs#$mk%dsf2$fedfsdsf&4dfdg152DSF2dsfb!23sd3f".getBytes());
-
     private static final int EXPIRATION_TIME = 10 * 60 * 60 * 1000; // 10시간
     private static final String AUTHORIZATION_HEADER_START = "Bearer ";
+
+    @Value("${jwt.secret-key}")
+    private String secretKeyString;
+    private SecretKey SECRET_KEY;
+
+    @PostConstruct
+    public void init() {
+        SECRET_KEY = Keys.hmacShaKeyFor(secretKeyString.getBytes());
+    }
 
     public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();
