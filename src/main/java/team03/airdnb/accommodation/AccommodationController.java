@@ -2,7 +2,6 @@ package team03.airdnb.accommodation;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,9 +29,9 @@ public class AccommodationController {
     @PostMapping
     public ResponseEntity<Void> createAccommodation(@RequestBody AccommodationSaveDto saveDto,
                                                     UriComponentsBuilder uriComponentsBuilder) {
-        Accommodation createdAccommodation = accommodationService.createAccommodation(saveDto);
+        Long accommodationId = accommodationService.createAccommodation(saveDto);
         URI location = uriComponentsBuilder.path("/accommodations/{id}")
-                .buildAndExpand(createdAccommodation.getId())
+                .buildAndExpand(accommodationId)
                 .toUri();
 
         return ResponseEntity
@@ -72,12 +71,9 @@ public class AccommodationController {
 
     @GetMapping("/filter")
     public ResponseEntity<List<AccommodationListDto>> filterAccommodations(@RequestBody AccommodationFilterDto filterDto) {
-        List<Accommodation> accommodationsByFilters = accommodationService.findAccommodationsByFilters(filterDto);
+        List<AccommodationListDto> accommodationsByFilters = accommodationService.findAccommodationsByFilters(
+                filterDto);
 
-        List<AccommodationListDto> accommodationListDtos = accommodationsByFilters.stream()
-                .map(accommodation -> AccommodationListDto.of(accommodation, accommodation.getAccommodationAmenities()))
-                .collect(Collectors.toList());
-
-        return ResponseEntity.ok(accommodationListDtos);
+        return ResponseEntity.ok(accommodationsByFilters);
     }
 }
