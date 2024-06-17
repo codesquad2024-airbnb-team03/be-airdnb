@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import team03.airdnb.accommodation.dto.request.AccommodationFilterDto;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
 import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
@@ -14,6 +15,7 @@ import team03.airdnb.user.UserRepository;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AccommodationService {
 
     private final AccommodationRepository accommodationRepository;
