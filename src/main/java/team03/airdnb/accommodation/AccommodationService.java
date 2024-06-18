@@ -1,29 +1,39 @@
 package team03.airdnb.accommodation;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import team03.airdnb.accommodation.dto.request.AccommodationFilterDto;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
 import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
 import team03.airdnb.accommodation.dto.response.AccommodationListDto;
 import team03.airdnb.accommodation.dto.response.AccommodationShowDto;
+import team03.airdnb.amenity.Amenity;
+import team03.airdnb.amenity.AmenityRepository;
 import team03.airdnb.user.User;
 import team03.airdnb.user.UserRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class AccommodationService {
 
     private final AccommodationRepository accommodationRepository;
     private final UserRepository userRepository;
+    private final AmenityRepository amenityRepository;
 
     public Long createAccommodation(AccommodationSaveDto saveDto) {
         User host = userRepository.findById(saveDto.getHostId()).get(); // 예외처리 추가할 예정입니다!
-        Accommodation savedAccommodation = accommodationRepository.save(saveDto.toEntity(host));
+
+        List<Amenity> amenities = new ArrayList<>();
+        amenities = saveDto.getAmenityIds().stream()
+                .map(id -> amenityRepository.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Invalid amenity ID: " + id)))
+                .collect(Collectors.toList());
+
+        Accommodation savedAccommodation = accommodationRepository.save(saveDto.toEntity(host, amenities));
         return savedAccommodation.getId();
     }
 
