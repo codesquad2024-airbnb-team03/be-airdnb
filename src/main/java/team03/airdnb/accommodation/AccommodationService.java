@@ -1,7 +1,11 @@
 package team03.airdnb.accommodation;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import team03.airdnb.accommodation.dto.request.AccommodationFilterDto;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
 import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
@@ -12,12 +16,9 @@ import team03.airdnb.amenity.AmenityRepository;
 import team03.airdnb.user.User;
 import team03.airdnb.user.UserRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AccommodationService {
 
     private final AccommodationRepository accommodationRepository;
@@ -54,8 +55,19 @@ public class AccommodationService {
 
     public void updateAccommodation(AccommodationUpdateDto updateDto) {
         Accommodation accommodation = accommodationRepository.findById(updateDto.getId()).get();
-        User host = userRepository.findById(updateDto.getHostId()).get(); // 예외처리 추가할 예정입니다!
-        accommodationRepository.save(updateDto.toEntity(host, accommodation.getAverageGrade()));
+        //User host = userRepository.findById(updateDto.getHostId()).get(); // 예외처리 추가할 예정입니다!
+
+        List<Amenity> amenities = new ArrayList<>();
+        amenities = updateDto.getAmenityIds().stream()
+                .map(id -> amenityRepository.findById(id)
+                        .orElseThrow(() -> new IllegalArgumentException("Invalid amenity ID: " + id)))
+                .collect(Collectors.toList());
+
+        System.out.println("amenities.size" + amenities.size());
+
+        accommodation.updateAmenities(amenities);
+        accommodationRepository.save(accommodation);
+        //accommodationRepository.save(updateDto.toEntity(host, accommodation.getAverageGrade(), amenities));
     }
 
     public void deleteAccommodation(Long accommodationId) {

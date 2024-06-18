@@ -66,4 +66,18 @@ public class Accommodation extends BaseEntity {
         this.accommodationAmenities.add(accommodationAmenity);
         amenity.getAccommodationAmenities().add(accommodationAmenity);
     }
+
+    public void updateAmenities(List<Amenity> newAmenities) {
+        // 기존 amenities 제거
+//        for (AccommodationAmenity aa : new ArrayList<>(accommodationAmenities)) {
+//            aa.getAmenity().getAccommodationAmenities().remove(aa);
+//            accommodationAmenities.remove(aa);
+//        }
+        accommodationAmenities.clear();
+
+        // 새로운 amenities 추가
+        newAmenities.forEach(this::addAmenity);
+
+        System.out.println("accommodationAmenities.size()" + accommodationAmenities.size());
+    }
 }
