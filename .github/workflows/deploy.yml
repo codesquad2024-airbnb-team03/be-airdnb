@@ -65,11 +65,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # Safely remove existing container if it exists
-            CONTAINER_ID=$(sudo docker ps -aq --filter name=airdnb)
-            if [ ! -z "$CONTAINER_ID" ]; then
-              sudo docker rm -f $CONTAINER_ID
-            fi
+            sudo docker rm -f $(sudo docker ps -qa)
             sudo docker pull ${{ secrets.DOCKER_REPO }}:latest
             sudo docker run -d -p 8080:8080 --name airdnb ${{ secrets.DOCKER_REPO }}:latest 
             sudo docker image prune -f
