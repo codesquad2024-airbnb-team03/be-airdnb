@@ -40,6 +40,11 @@ jobs:
           echo "${{ secrets.DB_CONFIG }}" > ./db-config.yml
         shell: bash
 
+      - name: Make authentication-config.yml
+        run: |
+          cd ${{ github.workspace }}/src/main/resources
+          echo "${{ secrets.AUTHENTICATION_CONFIG }}" > ./authentication-config.yml
+        shell: bash
 
       - name: Build with Gradle
         run: |
