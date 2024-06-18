@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import team03.airdnb.accommodationAmenity.AccommodationAmenity;
-import team03.airdnb.amenity.Amenity;
 import team03.airdnb.common.BaseEntity;
 import team03.airdnb.favorite.Favorite;
 import team03.airdnb.reservation.Reservation;
@@ -55,29 +54,6 @@ public class Accommodation extends BaseEntity {
     @JoinColumn(name = "host_id")
     private User host;
 
-    @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<AccommodationAmenity> accommodationAmenities = new ArrayList<>();
-
-    public void addAmenity(Amenity amenity) {
-        if (accommodationAmenities == null) {
-            accommodationAmenities = new ArrayList<>();
-        }
-        AccommodationAmenity accommodationAmenity = new AccommodationAmenity(this, amenity);
-        this.accommodationAmenities.add(accommodationAmenity);
-        amenity.getAccommodationAmenities().add(accommodationAmenity);
-    }
-
-    public void updateAmenities(List<Amenity> newAmenities) {
-        // 기존 amenities 제거
-//        for (AccommodationAmenity aa : new ArrayList<>(accommodationAmenities)) {
-//            aa.getAmenity().getAccommodationAmenities().remove(aa);
-//            accommodationAmenities.remove(aa);
-//        }
-        accommodationAmenities.clear();
-
-        // 새로운 amenities 추가
-        newAmenities.forEach(this::addAmenity);
-//
-//        System.out.println("accommodationAmenities.size()" + accommodationAmenities.size());
-    }
 }
