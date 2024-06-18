@@ -1,17 +1,24 @@
 package team03.airdnb.accommodation;
 
+import java.net.URI;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 import team03.airdnb.accommodation.dto.request.AccommodationFilterDto;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
 import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
 import team03.airdnb.accommodation.dto.response.AccommodationListDto;
 import team03.airdnb.accommodation.dto.response.AccommodationShowDto;
-
-import java.net.URI;
-import java.util.List;
 
 @RequestMapping("/accommodations")
 @RestController
@@ -64,7 +71,8 @@ public class AccommodationController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<List<AccommodationListDto>> filterAccommodations(@ModelAttribute AccommodationFilterDto filterDto) {
+    public ResponseEntity<List<AccommodationListDto>> filterAccommodations(
+            @ModelAttribute AccommodationFilterDto filterDto) {
         List<AccommodationListDto> accommodationsByFilters = accommodationService.findAccommodationsByFilters(
                 filterDto);
 

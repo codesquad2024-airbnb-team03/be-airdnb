@@ -3,10 +3,7 @@ package team03.airdnb.accommodationAmenity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.accommodation.AccommodationRepository;
-import team03.airdnb.accommodationAmenity.dto.request.AccommodationAmenityUpdateDto;
-import team03.airdnb.amenity.Amenity;
 import team03.airdnb.amenity.AmenityRepository;
 
 @Service
@@ -32,28 +29,28 @@ public class AccommodationAmenityService {
 //        return accommodationAmenityRepository.save(accommodationAmenity).getId();
 //    }
 
-    public void updateAccommodationAmenity(AccommodationAmenityUpdateDto updateDto) {
-        accommodationAmenityRepository.findById(updateDto.getId())
-                .orElseThrow(() -> new RuntimeException("AccommodationAmenity not found"));
+//    public void updateAccommodationAmenity(AccommodationAmenityUpdateDto updateDto) {
+//        accommodationAmenityRepository.findById(updateDto.getId())
+//                .orElseThrow(() -> new RuntimeException("AccommodationAmenity not found"));
+//
+//        Accommodation newAccommodation = accommodationRepository.findById(updateDto.getAccommodationId())
+//                .orElseThrow(() -> new RuntimeException("Accommodation not found"));
+//        Amenity newAmenity = amenityRepository.findById(updateDto.getAmenityId())
+//                .orElseThrow(() -> new RuntimeException("Amenity not found"));
+//
+//        AccommodationAmenity updated = AccommodationAmenity.builder()
+//                .id(updateDto.getId())
+//                .accommodation(newAccommodation)
+//                .amenity(newAmenity)
+//                .build();
+//
+//        accommodationAmenityRepository.save(updated);
+//    }
 
-        Accommodation newAccommodation = accommodationRepository.findById(updateDto.getAccommodationId())
-                .orElseThrow(() -> new RuntimeException("Accommodation not found"));
-        Amenity newAmenity = amenityRepository.findById(updateDto.getAmenityId())
-                .orElseThrow(() -> new RuntimeException("Amenity not found"));
-
-        AccommodationAmenity updated = AccommodationAmenity.builder()
-                .id(updateDto.getId())
-                .accommodation(newAccommodation)
-                .amenity(newAmenity)
-                .build();
-
-        accommodationAmenityRepository.save(updated);
-    }
-
-    public void deleteAccommodationAmenity(Long accommodationAmenityId) {
-        AccommodationAmenity accommodationAmenity = accommodationAmenityRepository.findById(accommodationAmenityId)
-                .orElseThrow(() -> new RuntimeException("AccommodationAmenity not found"));
-
-        accommodationAmenityRepository.delete(accommodationAmenity);
-    }
+//    public void deleteAccommodationAmenity(Long accommodationAmenityId) {
+//        AccommodationAmenity accommodationAmenity = accommodationAmenityRepository.findById(accommodationAmenityId)
+//                .orElseThrow(() -> new RuntimeException("AccommodationAmenity not found"));
+//
+//        accommodationAmenityRepository.delete(accommodationAmenity);
+//    }
 }
