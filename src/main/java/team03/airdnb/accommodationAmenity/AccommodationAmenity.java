@@ -28,9 +28,4 @@ public class AccommodationAmenity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "amenity_id")
     private Amenity amenity;
-
-    public AccommodationAmenity(Accommodation accommodation, Amenity amenity) {
-        this.accommodation = accommodation;
-        this.amenity = amenity;
-    }
 }
