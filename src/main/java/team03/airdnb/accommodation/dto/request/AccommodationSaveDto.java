@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.accommodation.Address;
-import team03.airdnb.amenity.Amenity;
 import team03.airdnb.user.User;
 
 import java.util.List;
@@ -26,8 +25,8 @@ public class AccommodationSaveDto {
     private Long hostId;
     private List<Long> amenityIds;
 
-    public Accommodation toEntity(User host, List<Amenity> amenities){
-        Accommodation accommodation = Accommodation.builder()
+    public Accommodation toEntity(User host){
+        return Accommodation.builder()
                 .name(this.name)
                 .profileImg(this.profileImg)
                 .address(this.address)
@@ -40,9 +39,5 @@ public class AccommodationSaveDto {
                 .latitude(this.latitude)
                 .host(host)
                 .build();
-
-        amenities.forEach(accommodation::addAmenity);
-
-        return accommodation;
     }
 }
