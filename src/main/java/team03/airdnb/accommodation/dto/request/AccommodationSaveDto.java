@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.accommodation.Address;
+import team03.airdnb.amenity.Amenity;
 import team03.airdnb.user.User;
+
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -21,9 +24,10 @@ public class AccommodationSaveDto {
     private double longitude; // 경도
     private double latitude; // 위도
     private Long hostId;
+    private List<Long> amenityIds;
 
-    public Accommodation toEntity(User host){
-        return Accommodation.builder()
+    public Accommodation toEntity(User host, List<Amenity> amenities){
+        Accommodation accommodation = Accommodation.builder()
                 .name(this.name)
                 .profileImg(this.profileImg)
                 .address(this.address)
@@ -36,5 +40,9 @@ public class AccommodationSaveDto {
                 .latitude(this.latitude)
                 .host(host)
                 .build();
+
+        amenities.forEach(accommodation::addAmenity);
+
+        return accommodation;
     }
 }

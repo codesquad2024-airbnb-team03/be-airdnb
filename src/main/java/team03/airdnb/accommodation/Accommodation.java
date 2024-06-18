@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import team03.airdnb.accommodationAmenity.AccommodationAmenity;
+import team03.airdnb.amenity.Amenity;
 import team03.airdnb.common.BaseEntity;
 import team03.airdnb.favorite.Favorite;
 import team03.airdnb.reservation.Reservation;
@@ -56,4 +57,13 @@ public class Accommodation extends BaseEntity {
 
     @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
     private List<AccommodationAmenity> accommodationAmenities = new ArrayList<>();
+
+    public void addAmenity(Amenity amenity) {
+        if (accommodationAmenities == null) {
+            accommodationAmenities = new ArrayList<>();
+        }
+        AccommodationAmenity accommodationAmenity = new AccommodationAmenity(this, amenity);
+        this.accommodationAmenities.add(accommodationAmenity);
+        amenity.getAccommodationAmenities().add(accommodationAmenity);
+    }
 }

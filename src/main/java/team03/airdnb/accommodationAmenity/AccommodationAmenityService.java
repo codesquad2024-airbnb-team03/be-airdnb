@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.accommodation.AccommodationRepository;
+import team03.airdnb.accommodationAmenity.dto.request.AccommodationAmenityUpdateDto;
 import team03.airdnb.amenity.Amenity;
 import team03.airdnb.amenity.AmenityRepository;
 
@@ -17,36 +18,36 @@ public class AccommodationAmenityService {
     private final AccommodationRepository accommodationRepository;
     private final AmenityRepository amenityRepository;
 
-    public Long createAccommodationAmenity(Long accommodationId, Long amenityId) {
-        Accommodation accommodation = accommodationRepository.findById(accommodationId)
-                .orElseThrow(() -> new RuntimeException("Accommodation not found"));
-        Amenity amenity = amenityRepository.findById(amenityId)
-                .orElseThrow(() -> new RuntimeException("Amenity not found"));
+//    public Long createAccommodationAmenity(AccommodationAmenitySaveDto saveDto) {
+//        Accommodation accommodation = accommodationRepository.findById(saveDto.getAccommodationId())
+//                .orElseThrow(() -> new RuntimeException("Accommodation not found"));
+//        Amenity amenity = amenityRepository.findById(saveDto.getAmenityId())
+//                .orElseThrow(() -> new RuntimeException("Amenity not found"));
+//
+//        AccommodationAmenity accommodationAmenity = AccommodationAmenity.builder()
+//                .accommodation(accommodation)
+//                .amenity(amenity)
+//                .build();
+//
+//        return accommodationAmenityRepository.save(accommodationAmenity).getId();
+//    }
 
-        AccommodationAmenity accommodationAmenity = AccommodationAmenity.builder()
-                .accommodation(accommodation)
-                .amenity(amenity)
-                .build();
-
-        return accommodationAmenityRepository.save(accommodationAmenity).getId();
-    }
-
-    public Long updateAccommodationAmenity(Long accommodationAmenityId, Long newAccommodationId, Long newAmenityId) {
-        AccommodationAmenity accommodationAmenity = accommodationAmenityRepository.findById(accommodationAmenityId)
+    public void updateAccommodationAmenity(AccommodationAmenityUpdateDto updateDto) {
+        accommodationAmenityRepository.findById(updateDto.getId())
                 .orElseThrow(() -> new RuntimeException("AccommodationAmenity not found"));
 
-        Accommodation newAccommodation = accommodationRepository.findById(newAccommodationId)
+        Accommodation newAccommodation = accommodationRepository.findById(updateDto.getAccommodationId())
                 .orElseThrow(() -> new RuntimeException("Accommodation not found"));
-        Amenity newAmenity = amenityRepository.findById(newAmenityId)
+        Amenity newAmenity = amenityRepository.findById(updateDto.getAmenityId())
                 .orElseThrow(() -> new RuntimeException("Amenity not found"));
 
         AccommodationAmenity updated = AccommodationAmenity.builder()
-                .id(accommodationAmenityId)
+                .id(updateDto.getId())
                 .accommodation(newAccommodation)
                 .amenity(newAmenity)
                 .build();
 
-        return accommodationAmenityRepository.save(updated).getId();
+        accommodationAmenityRepository.save(updated);
     }
 
     public void deleteAccommodationAmenity(Long accommodationAmenityId) {
