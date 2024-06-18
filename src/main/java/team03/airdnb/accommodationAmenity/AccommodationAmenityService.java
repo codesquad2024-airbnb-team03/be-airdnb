@@ -28,7 +28,7 @@ public class AccommodationAmenityService {
 //
 //        return accommodationAmenityRepository.save(accommodationAmenity).getId();
 //    }
-
+//
 //    public void updateAccommodationAmenity(AccommodationAmenityUpdateDto updateDto) {
 //        accommodationAmenityRepository.findById(updateDto.getId())
 //                .orElseThrow(() -> new RuntimeException("AccommodationAmenity not found"));
@@ -46,7 +46,7 @@ public class AccommodationAmenityService {
 //
 //        accommodationAmenityRepository.save(updated);
 //    }
-
+//
 //    public void deleteAccommodationAmenity(Long accommodationAmenityId) {
 //        AccommodationAmenity accommodationAmenity = accommodationAmenityRepository.findById(accommodationAmenityId)
 //                .orElseThrow(() -> new RuntimeException("AccommodationAmenity not found"));

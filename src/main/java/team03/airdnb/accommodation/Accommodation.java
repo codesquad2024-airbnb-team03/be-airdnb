@@ -55,7 +55,7 @@ public class Accommodation extends BaseEntity {
     @JoinColumn(name = "host_id")
     private User host;
 
-    @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "accommodation", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AccommodationAmenity> accommodationAmenities = new ArrayList<>();
 
     public void addAmenity(Amenity amenity) {
@@ -77,7 +77,7 @@ public class Accommodation extends BaseEntity {
 
         // 새로운 amenities 추가
         newAmenities.forEach(this::addAmenity);
-
-        System.out.println("accommodationAmenities.size()" + accommodationAmenities.size());
+//
+//        System.out.println("accommodationAmenities.size()" + accommodationAmenities.size());
     }
 }

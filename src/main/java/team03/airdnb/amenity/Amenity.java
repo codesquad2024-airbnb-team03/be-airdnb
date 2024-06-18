@@ -18,6 +18,7 @@ public class Amenity extends BaseEntity {
 
     private String name;
 
-    @OneToMany(mappedBy = "amenity", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "amenity")
     private List<AccommodationAmenity> accommodationAmenities = new ArrayList<>();
+
 }
