@@ -11,6 +11,8 @@ import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
 import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
 import team03.airdnb.accommodation.dto.response.AccommodationListDto;
 import team03.airdnb.accommodation.dto.response.AccommodationShowDto;
+import team03.airdnb.accommodationAmenity.AccommodationAmenity;
+import team03.airdnb.accommodationAmenity.AccommodationAmenityRepository;
 import team03.airdnb.amenity.Amenity;
 import team03.airdnb.amenity.AmenityRepository;
 import team03.airdnb.user.User;
@@ -24,6 +26,7 @@ public class AccommodationService {
     private final AccommodationRepository accommodationRepository;
     private final UserRepository userRepository;
     private final AmenityRepository amenityRepository;
+    private final AccommodationAmenityRepository accommodationAmenityRepository;
 
     public Long createAccommodation(AccommodationSaveDto saveDto) {
         User host = userRepository.findById(saveDto.getHostId()).get(); // 예외처리 추가할 예정입니다!
@@ -62,6 +65,9 @@ public class AccommodationService {
                 .map(id -> amenityRepository.findById(id)
                         .orElseThrow(() -> new IllegalArgumentException("Invalid amenity ID: " + id)))
                 .collect(Collectors.toList());
+
+        List<AccommodationAmenity> accommodationAmenities = accommodation.getAccommodationAmenities();
+
 
         System.out.println("amenities.size" + amenities.size());
 
