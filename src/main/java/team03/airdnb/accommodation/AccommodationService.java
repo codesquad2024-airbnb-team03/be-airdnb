@@ -9,7 +9,6 @@ import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
 import team03.airdnb.accommodation.dto.response.AccommodationListDto;
 import team03.airdnb.accommodation.dto.response.AccommodationShowDto;
 import team03.airdnb.accommodationAmenity.AccommodationAmenityService;
-import team03.airdnb.amenity.AmenityRepository;
 import team03.airdnb.user.User;
 import team03.airdnb.user.UserRepository;
 
@@ -23,7 +22,6 @@ public class AccommodationService {
 
     private final AccommodationRepository accommodationRepository;
     private final UserRepository userRepository;
-    private final AmenityRepository amenityRepository;
     private final AccommodationAmenityService accommodationAmenityService;
 
     public Long createAccommodation(AccommodationSaveDto accommodationSaveDto) {
