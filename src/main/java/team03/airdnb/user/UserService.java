@@ -1,8 +1,5 @@
 package team03.airdnb.user;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +12,9 @@ import team03.airdnb.review.dto.response.ReviewShowDto;
 import team03.airdnb.user.dto.request.UserSaveDto;
 import team03.airdnb.user.dto.response.UserShowDto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -24,8 +24,7 @@ public class UserService {
 
     public User createUser(UserSaveDto userSaveDto) {
         String encodedPassword = passwordEncoder.encode(userSaveDto.getPassword());
-        userSaveDto.setPassword(encodedPassword);
-        return userRepository.save(userSaveDto.toEntity());
+        return userRepository.save(userSaveDto.withEncodedPassword(encodedPassword).toEntity());
     }
 
     public UserShowDto showLoginUser(String name) {
@@ -45,16 +44,12 @@ public class UserService {
         User user = userRepository.findById(userId).get();
         List<Favorite> favorites = user.getFavorites();
 
-        List<AccommodationListDto> accommodationListDtos = new ArrayList<>();
-
-        for (Favorite favorite : favorites) {
-            Accommodation accommodation = favorite.getAccommodation();
-            AccommodationListDto accommodationListDto = AccommodationListDto.of(accommodation,
-                    accommodation.getAccommodationAmenities());
-            accommodationListDtos.add(accommodationListDto);
-        }
-
-        return accommodationListDtos;
+        return favorites.stream()
+                .map(favorite -> {
+                    Accommodation accommodation = favorite.getAccommodation();
+                    return AccommodationListDto.of(accommodation, accommodation.getAccommodationAmenities());
+                })
+                .collect(Collectors.toList());
     }
 
     public List<ReviewShowDto> showReviews(Long userId) {
