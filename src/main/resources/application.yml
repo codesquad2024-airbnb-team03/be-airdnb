@@ -5,3 +5,8 @@ spring:
     import:
         - db-config.yml
         - authentication-config.yml
+  oauth2:
+    login:
+      success-url: "http://localhost:3000/loginSuccess?token="
+  cors:
+    allowed-origins: "http://localhost:3000"
