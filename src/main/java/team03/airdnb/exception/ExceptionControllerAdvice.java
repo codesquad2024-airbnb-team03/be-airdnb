@@ -38,4 +38,10 @@ public class ExceptionControllerAdvice {
         log.error("[AmenityNotFoundException] {}", ex.getMessage());
         return new ResponseEntity<>(ex.getMessage(), ex.getHttpStatus());
     }
+
+    @ExceptionHandler(DuplicateReservationException.class)
+    public ResponseEntity<String> handleDuplicateReservationException(DuplicateReservationException ex) {
+        log.error("[DuplicateReservationException] {}", ex.getMessage());
+        return new ResponseEntity<>(ex.getMessage(), ex.getHttpStatus());
+    }
 }
