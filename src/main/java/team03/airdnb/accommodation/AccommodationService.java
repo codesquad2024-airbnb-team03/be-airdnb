@@ -28,13 +28,25 @@ public class AccommodationService {
         User host = userRepository.findById(accommodationSaveDto.getHostId()).get(); // 예외처리 추가할 예정입니다!
         Long createdAccommodationId = accommodationRepository.save(accommodationSaveDto.toEntity(host)).getId();
 
-        accommodationAmenityService.createAccommodationAmenity(accommodationSaveDto.getAmenityIds(), createdAccommodationId);
+        accommodationAmenityService.createAccommodationAmenity(accommodationSaveDto.getAmenityIds(),
+                createdAccommodationId);
 
         return createdAccommodationId;
     }
 
     public List<AccommodationListDto> showAccommodationList() {
         List<Accommodation> accommodationList = accommodationRepository.findAll();
+
+        return accommodationList.stream()
+                .map(accommodation -> AccommodationListDto.of(accommodation, accommodation.getAccommodationAmenities()))
+                .collect(Collectors.toList());
+    }
+
+    public List<AccommodationListDto> showAccommodationListByHostId(Long hostId) {
+        User host = userRepository.findById(hostId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid host Id:" + hostId));
+
+        List<Accommodation> accommodationList = accommodationRepository.findByHost(host);
 
         return accommodationList.stream()
                 .map(accommodation -> AccommodationListDto.of(accommodation, accommodation.getAccommodationAmenities()))
@@ -53,7 +65,8 @@ public class AccommodationService {
         User host = userRepository.findById(accommodationUpdateDto.getHostId()).get(); // 예외처리 추가할 예정입니다!
 
         accommodationRepository.save(accommodationUpdateDto.toEntity(host, accommodation.getAverageGrade()));
-        accommodationAmenityService.updateAccommodationAmenity(accommodationUpdateDto.getAmenityIds(), accommodationUpdateDto.getId());
+        accommodationAmenityService.updateAccommodationAmenity(accommodationUpdateDto.getAmenityIds(),
+                accommodationUpdateDto.getId());
     }
 
     public void deleteAccommodation(Long accommodationId) {
