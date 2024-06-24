@@ -44,4 +44,10 @@ public class ExceptionControllerAdvice {
         log.error("[DuplicateReservationException] {}", ex.getMessage());
         return new ResponseEntity<>(ex.getMessage(), ex.getHttpStatus());
     }
+
+    @ExceptionHandler(AddressNotFoundException.class)
+    public ResponseEntity<String> handleAddressNotFoundException(AddressNotFoundException ex) {
+        log.error("[AddressNotFoundException] {}", ex.getMessage());
+        return new ResponseEntity<>(ex.getMessage(), ex.getHttpStatus());
+    }
 }
