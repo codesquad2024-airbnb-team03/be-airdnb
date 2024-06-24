@@ -3,6 +3,8 @@ package team03.airdnb.accommodation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import team03.airdnb.KakaoMap.KakaoMapService;
+import team03.airdnb.KakaoMap.dto.CoordinatesDto;
 import team03.airdnb.accommodation.dto.request.AccommodationFilterDto;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
 import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
@@ -10,6 +12,7 @@ import team03.airdnb.accommodation.dto.response.AccommodationListDto;
 import team03.airdnb.accommodation.dto.response.AccommodationShowDto;
 import team03.airdnb.accommodationAmenity.AccommodationAmenityService;
 import team03.airdnb.exception.AccommodationNotFoundException;
+import team03.airdnb.exception.AddressNotFoundException;
 import team03.airdnb.exception.ErrorCode;
 import team03.airdnb.exception.UserNotFoundException;
 import team03.airdnb.user.User;
@@ -26,13 +29,17 @@ public class AccommodationService {
     private final AccommodationRepository accommodationRepository;
     private final UserRepository userRepository;
     private final AccommodationAmenityService accommodationAmenityService;
+    private final KakaoMapService kakaoMapService;
 
     public Long createAccommodation(AccommodationSaveDto accommodationSaveDto) {
         User host = userRepository.findById(accommodationSaveDto.getHostId()).orElseThrow(() -> new UserNotFoundException(ErrorCode.HOST_NOT_FOUND));
-        Long createdAccommodationId = accommodationRepository.save(accommodationSaveDto.toEntity(host)).getId();
+        CoordinatesDto coordinatesDto = kakaoMapService.getCoordinates(accommodationSaveDto.getFullAddress());
+        if(coordinatesDto == null) {
+            throw new AddressNotFoundException(ErrorCode.ADDRESS_NOT_FOUND);
+        }
+        Long createdAccommodationId = accommodationRepository.save(accommodationSaveDto.toEntity(host, coordinatesDto)).getId();
 
-        accommodationAmenityService.createAccommodationAmenity(accommodationSaveDto.getAmenityIds(),
-                createdAccommodationId);
+        accommodationAmenityService.createAccommodationAmenity(accommodationSaveDto.getAmenityIds(), createdAccommodationId);
 
         return createdAccommodationId;
     }
