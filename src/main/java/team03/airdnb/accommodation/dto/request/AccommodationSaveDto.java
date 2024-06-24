@@ -2,9 +2,9 @@ package team03.airdnb.accommodation.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import team03.airdnb.KakaoMap.dto.CoordinatesDto;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.accommodation.Address;
+import team03.airdnb.kakaoMap.dto.CoordinatesDto;
 import team03.airdnb.user.User;
 
 import java.util.List;

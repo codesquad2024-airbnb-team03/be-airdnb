@@ -1,4 +1,4 @@
-package team03.airdnb.KakaoMap.dto;
+package team03.airdnb.kakaoMap.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
