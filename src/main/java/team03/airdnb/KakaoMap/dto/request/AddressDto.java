@@ -1,4 +1,4 @@
-package team03.airdnb.KakaoMap.dto.request;
+package team03.airdnb.kakaoMap.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -8,27 +8,11 @@ import lombok.Getter;
 public class AddressDto {
     private Document[] documents;
 
-    public void setDocuments(Document[] documents) {
-        this.documents = documents;
-    }
-
     @Getter
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Document {
         private String addressName;
         private String x;
         private String y;
-
-        public void setAddressName(String addressName) {
-            this.addressName = addressName;
-        }
-
-        public void setX(String x) {
-            this.x = x;
-        }
-
-        public void setY(String y) {
-            this.y = y;
-        }
     }
 }
