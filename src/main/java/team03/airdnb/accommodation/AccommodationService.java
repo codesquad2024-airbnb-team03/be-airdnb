@@ -3,6 +3,8 @@ package team03.airdnb.accommodation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+import team03.airdnb.S3.S3Service;
 import team03.airdnb.accommodation.dto.request.AccommodationFilterDto;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
 import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
@@ -17,6 +19,7 @@ import team03.airdnb.kakaoMap.dto.CoordinatesDto;
 import team03.airdnb.user.User;
 import team03.airdnb.user.UserRepository;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,14 +32,23 @@ public class AccommodationService {
     private final UserRepository userRepository;
     private final AccommodationAmenityService accommodationAmenityService;
     private final KakaoMapService kakaoMapService;
+    private final S3Service s3Service;
 
-    public Long createAccommodation(AccommodationSaveDto accommodationSaveDto) {
+    public Long createAccommodation(AccommodationSaveDto accommodationSaveDto, MultipartFile file) {
         User host = userRepository.findById(accommodationSaveDto.getHostId()).orElseThrow(UserNotFoundException::new);
         CoordinatesDto coordinatesDto = kakaoMapService.getCoordinates(accommodationSaveDto.getFullAddress());
         if(coordinatesDto == null) {
             throw new AddressNotFoundException();
         }
-        Long createdAccommodationId = accommodationRepository.save(accommodationSaveDto.toEntity(host, coordinatesDto)).getId();
+
+        String profileImgUrl;
+        try {
+            profileImgUrl = s3Service.uploadFile(file);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to upload file to S3", e);
+        }
+
+        Long createdAccommodationId = accommodationRepository.save(accommodationSaveDto.toEntity(host, profileImgUrl, coordinatesDto)).getId();
 
         accommodationAmenityService.createAccommodationAmenity(accommodationSaveDto.getAmenityIds(), createdAccommodationId);
 
