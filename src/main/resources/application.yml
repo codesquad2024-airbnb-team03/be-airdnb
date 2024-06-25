@@ -11,3 +11,10 @@ spring:
       success-url: "http://airdnb-bucket.s3-website.ap-northeast-2.amazonaws.com/loginSuccess?token="
   cors:
     allowed-origins: "http://airdnb-bucket.s3-website.ap-northeast-2.amazonaws.com"
+  profiles:
+    include: private
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+      enabled: true
