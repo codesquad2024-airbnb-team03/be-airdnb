@@ -1,16 +1,17 @@
 package team03.airdnb.accommodation.dto.request;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.accommodation.Address;
 import team03.airdnb.kakaoMap.dto.CoordinatesDto;
 import team03.airdnb.user.User;
 
-import java.util.List;
-
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class AccommodationSaveDto {
 
     private static final String SPACE = " ";
@@ -26,10 +27,10 @@ public class AccommodationSaveDto {
     private Long hostId;
     private List<Long> amenityIds;
 
-    public Accommodation toEntity(User host, CoordinatesDto coordinatesDto){
+    public Accommodation toEntity(User host, String profileImg, CoordinatesDto coordinatesDto){
         return Accommodation.builder()
                 .name(this.name)
-                .profileImg(this.profileImg)
+                .profileImg(profileImg)
                 .address(this.address)
                 .price(this.price)
                 .maxHeadCount(this.maxHeadCount)
