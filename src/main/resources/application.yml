@@ -9,8 +9,8 @@ spring:
       - multipart-config.yml
   oauth2:
     login:
-      success-url: "http://localhost:3000/loginSuccess?token="
+      success-url: "http://airdnb-bucket.s3-website.ap-northeast-2.amazonaws.com/loginSuccess?token="
   cors:
-    allowed-origins: "http://localhost:3000/"
+    allowed-origins: "http://airdnb-bucket.s3-website.ap-northeast-2.amazonaws.com/"
   profiles:
     include: private
