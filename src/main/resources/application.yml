@@ -3,18 +3,14 @@ spring:
     name: airdnb
   config:
     import:
-        - db-config.yml
-        - authentication-config.yml
-        - kakao-config.yml
+      - db-config.yml
+      - authentication-config.yml
+      - kakao-config.yml
+      - multipart-config.yml
   oauth2:
     login:
-      success-url: "http://airdnb-bucket.s3-website.ap-northeast-2.amazonaws.com/loginSuccess?token="
+      success-url: "http://localhost:3000/loginSuccess?token="
   cors:
-    allowed-origins: "http://airdnb-bucket.s3-website.ap-northeast-2.amazonaws.com/"
+    allowed-origins: "http://localhost:3000/"
   profiles:
     include: private
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
-      enabled: true
