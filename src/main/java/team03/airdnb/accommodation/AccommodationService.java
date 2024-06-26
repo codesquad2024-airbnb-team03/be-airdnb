@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import team03.airdnb.S3.S3Service;
 import team03.airdnb.accommodation.dto.request.AccommodationFilterDto;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
 import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
@@ -16,6 +15,7 @@ import team03.airdnb.exception.notFound.AddressNotFoundException;
 import team03.airdnb.exception.notFound.UserNotFoundException;
 import team03.airdnb.kakaoMap.KakaoMapService;
 import team03.airdnb.kakaoMap.dto.CoordinatesDto;
+import team03.airdnb.s3.S3Service;
 import team03.airdnb.user.User;
 import team03.airdnb.user.UserRepository;
 
