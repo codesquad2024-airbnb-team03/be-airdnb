@@ -3,6 +3,7 @@
 /src/main/resources/authentication-config.yml
 /src/main/resources/kakao-config.yml
 /src/main/resources/application-private.yml
+/src/main/resources/multipart-config.yml
 
 ### build ###
 HELP.md
