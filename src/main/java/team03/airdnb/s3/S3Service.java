@@ -1,4 +1,4 @@
-package team03.airdnb.S3;
+package team03.airdnb.s3;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;

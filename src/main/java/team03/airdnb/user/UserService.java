@@ -29,7 +29,7 @@ public class UserService {
             throw new DuplicateNameException();
         }
         String encodedPassword = passwordEncoder.encode(userSaveDto.getPassword());
-        return userRepository.save(userSaveDto.withEncodedPassword(encodedPassword).toEntity());
+        return userRepository.save(userSaveDto.withProvidedPassword(encodedPassword).toEntity());
     }
 
     public UserShowDto showLoginUser(String name) {
