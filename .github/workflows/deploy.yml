@@ -55,7 +55,7 @@ jobs:
       - name: Make multipart-config.yml
         run: |
           cd ${{ github.workspace }}/src/main/resources
-          echo "${{ secrets.MULTIPART_CONFIG }}" > ./kakao-config.yml
+          echo "${{ secrets.MULTIPART_CONFIG }}" > ./multipart-config.yml
         shell: bash
 
       - name: Make application-private.yml
