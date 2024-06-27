@@ -18,6 +18,8 @@ import team03.airdnb.kakaoMap.dto.CoordinatesDto;
 import team03.airdnb.s3.S3Service;
 import team03.airdnb.user.User;
 import team03.airdnb.user.UserRepository;
+import team03.airdnb.user.UserService;
+import team03.airdnb.user.UserType;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,6 +32,7 @@ public class AccommodationService {
 
     private final AccommodationRepository accommodationRepository;
     private final UserRepository userRepository;
+    private final UserService userService;
     private final AccommodationAmenityService accommodationAmenityService;
     private final KakaoMapService kakaoMapService;
     private final S3Service s3Service;
@@ -51,6 +54,10 @@ public class AccommodationService {
         Long createdAccommodationId = accommodationRepository.save(accommodationSaveDto.toEntity(host, profileImgUrl, coordinatesDto)).getId();
 
         accommodationAmenityService.createAccommodationAmenity(accommodationSaveDto.getAmenityIds(), createdAccommodationId);
+
+        if(host.getType() != UserType.HOST){ // 숙소 생성 시 UserType을 Host로 변경
+            host.changeTypeToHost();
+        }
 
         return createdAccommodationId;
     }
@@ -126,7 +133,16 @@ public class AccommodationService {
 
     public List<AccommodationListDto> findAccommodationsByFilters(AccommodationFilterDto filterDto) {
         List<Accommodation> accommodationsByFilters = accommodationRepository.findAccommodationsByFilters(filterDto);
+
         return accommodationsByFilters.stream()
+                .map(accommodation -> AccommodationListDto.of(accommodation, accommodation.getAccommodationAmenities()))
+                .collect(Collectors.toList());
+    }
+
+    public List<AccommodationListDto> findAccommodationsByRegion(String region) {
+        List<Accommodation> accommodationsByRegion = accommodationRepository.findAccommodationsByFirstAddress(region);
+
+        return accommodationsByRegion.stream()
                 .map(accommodation -> AccommodationListDto.of(accommodation, accommodation.getAccommodationAmenities()))
                 .collect(Collectors.toList());
     }
