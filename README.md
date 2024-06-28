@@ -6,7 +6,7 @@
 <img src="https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/86272865/f086ad21-8d0b-4f0e-8b52-7e03f3fe47ae" style="border-radius: 5%;" alt=""/>
 </div>
 
-### 서비스 URL: http://airdnb-bucket.s3-website.ap-northeast-2.amazonaws.com/
+### 서비스 URL: http://airdnb-bucket.s3-website.ap-northeast-2.amazonaws.com
 <br/>
 
 ## 🍀 Team3 소개
@@ -37,6 +37,7 @@
 - Java
 - Spring Boot
 - Spring Data JPA
+- QueryDSL
 - MySQL
 - Oauth2.0
 
