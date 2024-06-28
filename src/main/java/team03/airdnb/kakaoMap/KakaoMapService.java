@@ -1,4 +1,4 @@
-package team03.airdnb.kakaoMap;
+package team03.airdnb.KakaoMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
