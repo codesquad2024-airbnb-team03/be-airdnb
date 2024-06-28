@@ -4,21 +4,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import team03.airdnb.KakaoMap.KakaoMapService;
+import team03.airdnb.KakaoMap.dto.CoordinatesDto;
 import team03.airdnb.accommodation.dto.request.AccommodationFilterDto;
 import team03.airdnb.accommodation.dto.request.AccommodationSaveDto;
 import team03.airdnb.accommodation.dto.request.AccommodationUpdateDto;
 import team03.airdnb.accommodation.dto.response.AccommodationListDto;
 import team03.airdnb.accommodation.dto.response.AccommodationShowDto;
 import team03.airdnb.accommodationAmenity.AccommodationAmenityService;
+import team03.airdnb.exception.FileUploadFailedException;
 import team03.airdnb.exception.notFound.AccommodationNotFoundException;
 import team03.airdnb.exception.notFound.AddressNotFoundException;
 import team03.airdnb.exception.notFound.UserNotFoundException;
-import team03.airdnb.kakaoMap.KakaoMapService;
-import team03.airdnb.kakaoMap.dto.CoordinatesDto;
 import team03.airdnb.s3.S3Service;
 import team03.airdnb.user.User;
 import team03.airdnb.user.UserRepository;
-import team03.airdnb.user.UserService;
 import team03.airdnb.user.UserType;
 
 import java.io.IOException;
@@ -32,7 +32,6 @@ public class AccommodationService {
 
     private final AccommodationRepository accommodationRepository;
     private final UserRepository userRepository;
-    private final UserService userService;
     private final AccommodationAmenityService accommodationAmenityService;
     private final KakaoMapService kakaoMapService;
     private final S3Service s3Service;
@@ -48,7 +47,7 @@ public class AccommodationService {
         try {
             profileImgUrl = s3Service.uploadFile(file);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to upload file to S3", e);
+            throw new FileUploadFailedException();
         }
 
         Long createdAccommodationId = accommodationRepository.save(accommodationSaveDto.toEntity(host, profileImgUrl, coordinatesDto)).getId();
