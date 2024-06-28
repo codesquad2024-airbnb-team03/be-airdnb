@@ -16,7 +16,8 @@ public enum ErrorCode {
     AMENITY_NOT_FOUND(HttpStatus.NOT_FOUND, "Amenity not found"),
     DUPLICATE_RESERVATION(HttpStatus.CONFLICT, "Reservation is not available for the given dates"),
     ADDRESS_NOT_FOUND(HttpStatus.NOT_FOUND, "Address not found"),
-    REVIEW_NOT_ALLOWED(HttpStatus.FORBIDDEN, "Must have a reservation to write a review");
+    REVIEW_NOT_ALLOWED(HttpStatus.FORBIDDEN, "Must have a reservation to write a review"),
+    FILE_UPLOAD_FAILED(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to upload file to S3");
 
     private final HttpStatus httpStatus;
     private final String message;

@@ -28,4 +28,10 @@ public class ExceptionControllerAdvice {
         log.error("[ReviewNotAllowedException] {}", ex.getMessage());
         return new ResponseEntity<>(ex.getMessage(), ex.getHttpStatus());
     }
+
+    @ExceptionHandler(FileUploadFailedException.class)
+    public ResponseEntity<String> handleFileUploadFailedException(FileUploadFailedException ex) {
+        log.error("[FileUploadFailedException] {}", ex.getMessage());
+        return new ResponseEntity<>(ex.getMessage(), ex.getHttpStatus());
+    }
 }
