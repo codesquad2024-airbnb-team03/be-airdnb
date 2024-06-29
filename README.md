@@ -1,7 +1,7 @@
 <div align="center">
 <h1>  ✨ Airdnb  ✨</h1>
 
-<h3> ️ 마스터즈 2024 BE 숙박앱 프로젝트 </h3>
+<h3> ️ 마스터즈 2024 숙박앱 프로젝트 </h3>
 <br/>
 <img src="https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/86272865/f086ad21-8d0b-4f0e-8b52-7e03f3fe47ae" style="border-radius: 5%;" alt=""/>
 </div>
@@ -22,16 +22,16 @@
 
 | 📚문서 | [기획서](https://www.figma.com/design/T2ASU9JPHsYS0ocQjDrL1g/BE_%EC%88%99%EC%86%8C%EC%98%88%EC%95%BD%EC%84%9C%EB%B9%84%EC%8A%A4?node-id=80-358&t=1DA3YIexppc4ss0r-1) | [노션](<https://verdant-orca-183.notion.site/5afc56f8276a444da9bec5b936c8c4aa?v=4008193a61e1434dbc863d13c6cf5414&pvs=4>) |[api 명세서](<https://documenter.getpostman.com/view/27367528/2sA3dsoEGo>) 
 | :----: | :--------------------------------------------------------------------------------------: |:---------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------:|
-
-
-### 협업 규칙
-- 스크럼 시간: 출근 직후, 필요할 때마다 🤗
-- BE: dev-be에 계속 머지, FE: master에 계속 머지
-- GitHub Issues를 사용해서 Task 관리하기
-- 서로 공유할 내용 노션에 계속 정리하기
 <br/>
 
 ## ⚙️ 기술 스택
+
+### Front-End
+- React
+- JavaScript
+- HTML
+- CSS
+
 ### Back-End
 - Java
 - Spring Boot
@@ -39,17 +39,13 @@
 - QueryDSL
 - MySQL
 - Oauth2.0
+- Spring Security
 
 ### Infra
 - Docker
 - GitHub Actions
 - Nginx
 - AWS: EC2, S3
-
-### Front-End
-- React
-- Javascript
-- HTML, CSS
 <br/>
 
 ## ERD
