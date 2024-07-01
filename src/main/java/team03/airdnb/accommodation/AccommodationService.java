@@ -83,8 +83,7 @@ public class AccommodationService {
     public AccommodationShowDto showAccommodationDetail(Long accommodationId) {
         Accommodation accommodation = accommodationRepository.findById(accommodationId).orElseThrow(AccommodationNotFoundException::new);
 
-        // 수수료(fee) 관련해서는 아직 구현하지 못해 임의의 숫자를 넣었습니다.
-        return AccommodationShowDto.of(accommodation, 10000L, accommodation.getAccommodationAmenities());
+        return AccommodationShowDto.of(accommodation, accommodation.getAccommodationAmenities());
     }
 
     public void updateAccommodation(AccommodationUpdateDto accommodationUpdateDto) {
