@@ -1,4 +1,4 @@
-package team03.airdnb.KakaoMap.dto.request;
+package team03.airdnb.kakaoMap.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;

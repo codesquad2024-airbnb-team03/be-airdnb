@@ -1,4 +1,4 @@
-package team03.airdnb.KakaoMap;
+package team03.airdnb.kakaoMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import team03.airdnb.KakaoMap.dto.CoordinatesDto;
-import team03.airdnb.KakaoMap.dto.request.AddressDto;
+import team03.airdnb.kakaoMap.dto.CoordinatesDto;
+import team03.airdnb.kakaoMap.dto.request.AddressDto;
 
 @Service
 @RequiredArgsConstructor
