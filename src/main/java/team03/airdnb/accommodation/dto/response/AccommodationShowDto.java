@@ -24,7 +24,6 @@ public class AccommodationShowDto {
     private String profileImg;
     private Address address;
     private Long price;
-    private Long fee;
     private int maxHeadCount;
     private int bedCount;
     private int bedroomCount;
@@ -38,14 +37,13 @@ public class AccommodationShowDto {
     private UserShowDto host;
     private List<LocalDate[]> reservedDates;
 
-    public static AccommodationShowDto of(Accommodation accommodation, Long fee, List<AccommodationAmenity> accommodationAmenities) {
+    public static AccommodationShowDto of(Accommodation accommodation, List<AccommodationAmenity> accommodationAmenities) {
         return new AccommodationShowDto(
                 accommodation.getId(),
                 accommodation.getName(),
                 accommodation.getProfileImg(),
                 accommodation.getAddress(),
                 accommodation.getPrice(),
-                fee,
                 accommodation.getMaxHeadCount(),
                 accommodation.getBedCount(),
                 accommodation.getBedroomCount(),

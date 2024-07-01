@@ -1,6 +1,5 @@
 package team03.airdnb.accommodation.dto.request;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +7,8 @@ import team03.airdnb.accommodation.Accommodation;
 import team03.airdnb.accommodation.Address;
 import team03.airdnb.kakaoMap.dto.CoordinatesDto;
 import team03.airdnb.user.User;
+
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
