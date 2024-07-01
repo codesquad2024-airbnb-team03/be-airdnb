@@ -1,4 +1,4 @@
-package team03.airdnb.KakaoMap;
+package team03.airdnb.kakaoMap;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
