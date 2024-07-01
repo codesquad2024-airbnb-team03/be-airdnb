@@ -3,13 +3,13 @@
 
 <h3> ️ 마스터즈 2024 숙박앱 프로젝트 </h3>
 <br/>
-<img src="https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/86272865/f086ad21-8d0b-4f0e-8b52-7e03f3fe47ae" style="border-radius: 5%;" alt=""/>
+<img src="https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/86272865/f086ad21-8d0b-4f0e-8b52-7e03f3fe47ae" style="border-radius: 3%;" alt=""/>
 </div>
 
-### 서비스 URL: http://airdnb-bucket.s3-website.ap-northeast-2.amazonaws.com
+### 서비스 URL: [Airdnb](http://airdnb-bucket.s3-website.ap-northeast-2.amazonaws.com)
 <br/>
 
-## 🍀 Team3 소개
+## 🍀 Team 소개
 
 |                                                             개발(FE/BE)                                                             |                                     개발(FE/BE)                                     |
 |:---------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|
@@ -27,27 +27,73 @@
 ## ⚙️ 기술 스택
 
 ### Front-End
-- React
-- JavaScript
-- HTML
-- CSS
+<span style="display: inline-block;">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
+</span>
 
 ### Back-End
-- Java
-- Spring Boot
-- Spring Data JPA
-- QueryDSL
-- MySQL
-- Oauth2.0
-- Spring Security
+<span style="display: inline-block;">
+<img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white">
+<img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
+<img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+<img src="https://img.shields.io/badge/Spring Security-6DB33F?style=for-the-badge&logo=Spring Security&logoColor=white">
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
+</span>
 
 ### Infra
-- Docker
-- GitHub Actions
-- Nginx
-- AWS: EC2, S3
-<br/>
+<span style="display: inline-block;">
+<img src="https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white">
+<img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"> 
+<img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white">
+<img src="https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=Amazon%20EC2&logoColor=white">
+<img src="https://img.shields.io/badge/Amazon%20S3-569A31?style=for-the-badge&logo=Amazon%20S3&logoColor=white">
+</span>
 
 ## ERD
-
 ![image](https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/86272865/48e0f9fc-4f7a-4084-b055-0f1c967eb698)
+
+
+## 🖥️ 화면 구성
+
+<div align="center">
+<h3>메인 화면</h3>
+</div>
+<p align="center">
+<img src="https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/122773167/98f9b44a-24ef-4072-8bf4-4177512d956a">
+<img src="https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/122773167/fc0efab2-55c6-4894-bea2-0572734726ad">
+</p>
+<br>
+
+<div align="center">
+<h3>숙소 필터링</h3>
+</div>
+<p align="center">
+<img src="https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/122773167/1f26b08d-da1d-4bf7-b0df-d0efb8222339">
+</p>
+<br>
+
+<div align="center">
+<h3>숙소 예약</h3>
+</div>
+<p align="center">
+<img src="https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/122773167/5d631717-2ab1-4cf3-8691-a4659663de2c">
+</p>
+<br>
+
+<div align="center">
+<h3>지역별 숙소 필터링</h3>
+</div>
+<p align="center">
+<img src="https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/122773167/81e5f46c-e5b4-4144-b84d-6434c220d1d6">
+</p>
+<br>
+
+<div align="center">
+<h3>숙소 등록 (주소 검증)</h3>
+</div>
+<p align="center">
+<img src="https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/122773167/5d4d08c1-64e5-4c87-98ba-b40544abe499">
+</p>
+<br>
