@@ -6,6 +6,9 @@
 <img src="https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/86272865/f086ad21-8d0b-4f0e-8b52-7e03f3fe47ae" style="border-radius: 3%;" alt=""/>
 </div>
 
+> CodeSquad Team 03 <br> 개발 기간: 2024.06.03 ~ 2024.06.30
+
+
 ### 서비스 URL: [Airdnb](http://airdnb-bucket.s3-website.ap-northeast-2.amazonaws.com)
 <br/>
 
@@ -51,6 +54,10 @@
 <img src="https://img.shields.io/badge/Amazon%20S3-569A31?style=for-the-badge&logo=Amazon%20S3&logoColor=white">
 </span>
 
+### Communication
+![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white)
+![Notion](https://img.shields.io/badge/Notion-white?style=for-the-badge&logo=Notion&logoColor=black)
+
 ## ERD
 ![image](https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/86272865/48e0f9fc-4f7a-4084-b055-0f1c967eb698)
 
@@ -91,9 +98,17 @@
 <br>
 
 <div align="center">
-<h3>숙소 등록 (주소 검증)</h3>
+<h3>숙소 등록 (주소 검증, 사진 첨부)</h3>
 </div>
 <p align="center">
 <img src="https://github.com/codesquad2024-airbnb-team03/be-airdnb/assets/122773167/5d4d08c1-64e5-4c87-98ba-b40544abe499">
+</p>
+<br>
+
+<div align="center">
+<h3>리뷰 작성</h3>
+</div>
+<p align="center">
+<img src="https://github.com/codesquad2024-airbnb-team03/fe-airdnb/assets/122773167/a9debbcd-adcd-4a37-8240-dae600d26fd5">
 </p>
 <br>
